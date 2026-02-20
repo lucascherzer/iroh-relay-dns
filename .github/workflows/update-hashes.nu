@@ -16,12 +16,7 @@ def main [
     # ── Configuration ────────────────────────────────────────────────────────
     let repo         = "n0-computer/iroh"
     let pnames       = ["iroh-relay" "iroh-dns-server"]
-    let systems: record<
-        x86_64-linux:   string,
-        aarch64-linux:  string,
-        x86_64-darwin:  string,
-        aarch64-darwin: string
-    > = {
+    let systems = {
         "x86_64-linux":   "x86_64-unknown-linux-musl"
         "aarch64-linux":  "aarch64-unknown-linux-musl"
         "x86_64-darwin":  "x86_64-apple-darwin"
@@ -30,7 +25,6 @@ def main [
 
     # ── Read current state ───────────────────────────────────────────────────
     let hashes_path = "hashes.json"
-    let flake_path  = "flake.nix"
 
     let current = open $hashes_path
     let current_version = $current.version
@@ -109,17 +103,6 @@ def main [
     # ── Write hashes.json ────────────────────────────────────────────────────
     $output | to json --indent 2 | save --force $hashes_path
     print $"\nWrote ($hashes_path)"
-
-    # ── Patch version in flake.nix ────────────────────────────────────────────
-    let flake_content = open --raw $flake_path
-    let patched = (
-        $flake_content
-        | str replace
-            $"version = \"($current_version)\";"
-            $"version = \"($version)\";"
-    )
-    $patched | save --force $flake_path
-    print $"Patched ($flake_path): ($current_version) → ($version)"
 
     print "\nDone."
 }
