@@ -1,15 +1,15 @@
 {
   "version": "0.96.0",
   "iroh-dns-server": {
-    "aarch64-darwin": "sha256-1xpq9r73ijzlbifdyqpn79czkaz9d5y54y4hz9mlmxgv4c6bh3cc",
-    "aarch64-linux": "sha256-1ga8adppcxaz9la808a3glkmnln2599jz1alh0xbmicmawv2yxam",
-    "x86_64-darwin": "sha256-1yvj6lgsl98hid30p22457rnfyw997w040z6vn2ih964pmwkcnrn",
-    "x86_64-linux": "sha256-0jiciqdw0ixfx03k3fab8iqn9nc2sb5b7c1zika6755qs2f9243c"
+    "aarch64-darwin": "sha256-jA24DCP79Upr+pB4Unxp6av5WTr2Yt9cXPTLOE5O+PY=",
+    "aarch64-linux": "sha256-VXUvNleVxbo6gFSFL1MqwlJbJ31DIYAUTV91dm9TSL0=",
+    "x86_64-darwin": "sha256-Nls2eb3EJBiF3eYDAvhJiXtn8ylEiAtGixAlqh81cvs=",
+    "x86_64-linux": "sha256-bBCRnNC4lGPUjD+ws8rSgtlkcURLuTEH6K5HwBuOLEo="
   },
   "iroh-relay": {
-    "aarch64-darwin": "sha256-0nqzi5y09sglcr10z53pzdh8n5gpy5dmmdqvphwa6p2hbfxsrzkv",
-    "aarch64-linux": "sha256-1kpkq3b9rfxbncv3iyhpgrqammf2wf39m23f4kxr5r3pmypsx2bx",
-    "x86_64-darwin": "sha256-1qrj4lhc005p8mavgab03gf8hwpnwm0xmibp0ccg15ag6w0c2s0y",
-    "x86_64-linux": "sha256-004rlhmznirq0imxh9zf2ckw4dij5wbfaz5dgrihsrglplm9smxw"
+    "aarch64-darwin": "sha256-e/6su1tQXKM4vBu3Wlvx9xWLYPt3lA9CZvTpBHyJH1s=",
+    "aarch64-linux": "sha256-fYmur6935JL7JG6ImobjwtWqcH4X+jg2s6u7nNbA884=",
+    "x86_64-darwin": "sha256-HmjBADdPlfAYA3fF2kHl9nKI3BtgqbdVRbcAwCAlMuM=",
+    "x86_64-linux": "sha256-vFedKr30ZQ1jfq185RYvMjbCJxPuJ9hrBDhH+yukmQA="
   }
 }

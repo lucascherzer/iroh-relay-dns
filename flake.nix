@@ -23,13 +23,18 @@
         else if system == "aarch64-darwin" then "aarch64-darwin"
         else null;
 
+      getTarget = system:
+        if system == "x86_64-linux" then "x86_64-unknown-linux-musl"
+        else if system == "aarch64-linux" then "aarch64-unknown-linux-musl"
+        else if system == "x86_64-darwin" then "x86_64-apple-darwin"
+        else if system == "aarch64-darwin" then "aarch64-apple-darwin"
+        else null;
+
       mkPackage = { pkgs, pname, system }:
         let
           systemKey = getSystemKey system;
+          target = getTarget system;
           hash = hashes.${pname}.${systemKey};
-          target = if pkgs.stdenv.isDarwin
-            then "${system}-darwin"
-            else "${system}-linux-musl";
           url = "https://github.com/n0-computer/iroh/releases/download/v${version}/${pname}-v${version}-${target}.tar.gz";
         in
         pkgs.stdenv.mkDerivation {
@@ -52,7 +57,7 @@
           meta = with pkgs.lib; {
             description = "Iroh ${pname} - distributed data synchronization";
             homepage = "https://iroh.computer";
-            license = licenses.asl20;
+            license = licenses.mit;
             platforms = supportedSystems;
             mainProgram = pname;
           };
