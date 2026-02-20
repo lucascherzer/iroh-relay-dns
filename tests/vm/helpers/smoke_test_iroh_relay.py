@@ -27,11 +27,11 @@ def main(machine):
     machine.wait_until_succeeds("ss -tuln | grep -q ':3340'", timeout=30)
     print("OK  port 3340 is listening")
 
-    # 5 – HTTP /health endpoint responds
+    # 5 – HTTP /healthz endpoint responds (iroh-relay uses /healthz, not /health)
     machine.wait_until_succeeds(
-        "curl -sf http://127.0.0.1:3340/health", timeout=30
+        "curl -sf http://127.0.0.1:3340/healthz", timeout=30
     )
-    print("OK  /health endpoint responds on port 3340")
+    print("OK  /healthz endpoint responds on port 3340")
 
     # 6 – ExecStart contains --dev flag (validates devMode option wiring)
     machine.succeed(
@@ -50,7 +50,7 @@ def main(machine):
     # 8 – service survives a restart
     machine.succeed("systemctl restart iroh-relay.service")
     machine.wait_for_unit("iroh-relay.service")
-    machine.wait_until_succeeds("curl -sf http://127.0.0.1:3340/health", timeout=30)
+    machine.wait_until_succeeds("curl -sf http://127.0.0.1:3340/healthz", timeout=30)
     print("OK  service restarted and is healthy again")
 
     # 9 – logs are accessible

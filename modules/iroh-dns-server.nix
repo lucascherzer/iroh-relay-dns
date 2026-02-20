@@ -24,9 +24,9 @@ in
         Path to an existing TOML configuration file for iroh-dns-server.
         When set, <option>settings</option> is ignored.
 
-        At minimum the server needs a <literal>[dns]</literal> section with
-        <literal>origins</literal>, <literal>rr_a</literal> and
-        <literal>default_soa</literal>.  See the upstream example configs at
+        At minimum the server needs a "[dns]" section with
+        "origins", "rr_a" and
+        "default_soa".  See the upstream example configs at
         <https://github.com/n0-computer/iroh/tree/main/iroh-dns-server>.
       '';
     };
@@ -42,7 +42,7 @@ in
             example = "disabled";
             description = ''
               Rate limit for pkarr PUT requests.
-              Valid values: <literal>"smart"</literal>, <literal>"disabled"</literal>,
+              Valid values: ""smart"", ""disabled"",
               or a number (requests per second).
             '';
           };

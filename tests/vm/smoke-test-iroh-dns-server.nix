@@ -31,9 +31,10 @@ pkgs.testers.runNixOSTest {
           port = 8080
 
           [dns]
-          port      = 5353
-          origins   = ["."]
-          rr_a      = "127.0.0.1"
+          port        = 5353
+          origins     = ["."]
+          rr_a        = "127.0.0.1"
+          default_ttl = 30
           default_soa = "ns1.example.org. hostmaster.example.org. 0 10800 3600 604800 3600"
 
           [mainline]
