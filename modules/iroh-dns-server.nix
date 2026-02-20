@@ -258,7 +258,7 @@ in
 
           ExecStart = lib.concatStringsSep " " (
             [ "${cfg.package}/bin/iroh-dns-server" "--config" (toString resolvedConfigFile) ]
-            ++ lib.escapeShellArgs cfg.extraArgs
+            ++ map lib.escapeShellArg cfg.extraArgs
           );
 
           EnvironmentFile = lib.mkIf (cfg.environmentFile != null)

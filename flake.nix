@@ -116,6 +116,18 @@
                 }
               ];
             }).config.system.build.toplevel;
+
+            # NixOS VM smoke tests – run the module inside a real VM and
+            # exercise the service end-to-end.
+            vm-iroh-relay = pkgs.callPackage ./tests/vm/smoke-test-iroh-relay.nix {
+              iroh-relay  = self.packages.${system}.iroh-relay;
+              nixosModule = self.nixosModules.iroh-relay;
+            };
+
+            vm-iroh-dns-server = pkgs.callPackage ./tests/vm/smoke-test-iroh-dns-server.nix {
+              iroh-dns-server = self.packages.${system}.iroh-dns-server;
+              nixosModule     = self.nixosModules.iroh-dns-server;
+            };
           }
       );
     };
