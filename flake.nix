@@ -7,8 +7,8 @@
 
   outputs = { self, nixpkgs }:
     let
-      version = "0.96.0";
-      hashes = builtins.fromJSON (builtins.readFile ./hashes.json);
+      hashes  = builtins.fromJSON (builtins.readFile ./hashes.json);
+      version = hashes.version;
 
       supportedSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
 
