@@ -1,0 +1,47 @@
+name: checks
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  check:
+    name: nix flake check (${{ matrix.system }})
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - system: x86_64-linux
+            runner: ubuntu-latest
+          - system: aarch64-linux
+            runner: ubuntu-24.04-arm
+          - system: aarch64-darwin
+            runner: macos-latest
+          - system: x86_64-darwin
+            runner: macos-13
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: |
+            experimental-features = nix-command flakes
+
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Check flake evaluation
+        run: nix flake check --no-build --all-systems 2>&1
+
+      - name: Build packages
+        run: |
+          nix build .#iroh-relay      --print-build-logs
+          nix build .#iroh-dns-server --print-build-logs
+
+      - name: Evaluate NixOS modules (Linux only)
+        if: contains(matrix.system, 'linux')
+        run: |
+          nix build .#checks.${{ matrix.system }}.module-iroh-relay      --no-link --print-build-logs
+          nix build .#checks.${{ matrix.system }}.module-iroh-dns-server --no-link --print-build-logs
